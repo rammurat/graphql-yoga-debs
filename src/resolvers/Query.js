@@ -22,16 +22,16 @@ const Query = {
     },
     allReviews(parent, args, {db}) {
         return db.allReviews
+    },
+    allCategories(parent, args, {db}) {
+        return db.allCategories
+    },
+    allSubCategories(parent, args, {db}) {
+        return db.allSubCategories
+    },
+    allSubSubCategories(parent, args, {db}) {
+        return db.allSubSubCategories
     }
-    // allCategories(parent, args, {db}) {
-    //     return db.allCategories
-    // },
-    // allSubCategories(parent, args, {db}) {
-    //     return db.allSubCategories
-    // },
-    // allSubSubCategories(parent, args, {db}) {
-    //     return db.allSubSubCategories
-    // }
 }
 
 export default Query

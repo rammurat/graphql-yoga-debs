@@ -3,6 +3,9 @@ type Query {
     allProducts: [Product!]!
     allReviews: [Review!]!
     products(query: String): [Product!]!
+    allCategories: [Categories!]!
+    allSubCategories: [SubCategories!]!
+    allSubSubCategories: [SubSubCategories!]!
 }
 
 # type Mutation {
@@ -88,4 +91,20 @@ type Review {
     text: String!,
     author: User!,
     product: Product!
+}
+
+type Categories {
+    id: ID!,
+    name: String!
+}
+
+type SubCategories {
+    id: ID!,
+    name: String!,
+    image: String!,
+}
+
+type SubSubCategories {
+    id: ID!,
+    name: String!,
 }
