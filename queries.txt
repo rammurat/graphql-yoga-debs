@@ -1,43 +1,47 @@
-// all users and products
-{
-  allProducts{
-    id,
-    title,
-    body,
-    published
-  },
+// all users 
+query{
   allUsers{
-    id,
-    name,
-    email,
-    age
-  }
-}
-
-// search products and users
-{ 
-  users(query: "deep"){
     name,
     email
-  },
-  products(query: "product 1"){
-    title,
-    body
   }
 }
 
-// relational products ans users 
+// all products
+query{
+  allProducts{
+    name,
+    description
+  }
+}
+
+// search products
+query { 
+  products(query: "lisca"){
+    name,
+    description
+  }
+}
+
+// all reviews 
+query{
+  allReviews{
+    id,
+    text
+  }
+}
+
+// relational products and users 
 {
+  products{
+    name,
+    author{
+      name
+    }
+  },
   users{
     name,
     articles{
       title
-    }
-  },
-  products{
-    title,
-    author{
-      name
     }
   }
 }
@@ -94,7 +98,7 @@ mutation {
 // add products 
 mutation {
     createProduct(data: {
-      title: "Post 101", 
+      title: "Product 101", 
       body: "This is a new product", 
       published: true,
       author: "1"
@@ -177,7 +181,7 @@ mutation {
 // update product 
 mutation {
   updateProduct( id: "11", data: {
-      title: "Post updated 1", 
+      title: "Product updated 1", 
       body: "Description updated"
     }){
     id,

@@ -103,7 +103,7 @@ const allProducts = [{
     id: "2",
     name: 'Lisca - Grey Green Giselle Underwired Full Cup Bra',
     price: [{gbp: 10}, {euro: 15}],
-    description: "Wow dress",
+    description: "Wow dress 2",
     sizes: [8,10,12,14,16],
     tags: [{name: "Lingerie", url: "/Lingerie"}],
     cat_id: "1",

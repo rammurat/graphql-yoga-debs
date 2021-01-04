@@ -47,9 +47,9 @@ const Mutation = {
     },
     createReview(parent, args, {db, pubsub}) {
         const isUserExist = db.allUsers.find((user) => { return user.id === args.data.author})
-        const isPostExist = db.allProducts.find((product) => { return product.id === args.data.product})
+        const isProductExist = db.allProducts.find((product) => { return product.id === args.data.product})
 
-        if(!isUserExist || !isPostExist) {
+        if(!isUserExist || !isProductExist) {
             throw new Error("Can't find user or product.")
         }
 
@@ -94,7 +94,7 @@ const Mutation = {
         // remove user
         const index = db.allProducts.findIndex((product) => product.id === args.id)
         if(index === -1){
-            throw new Error('Post not found')
+            throw new Error('Product not found')
         }
 
         // remove product
@@ -157,7 +157,7 @@ const Mutation = {
         const product = db.allProducts.find((product) => { return product.id === args.id})
 
         if(!product) {
-            throw new Error('Post does not exist')
+            throw new Error('Product does not exist')
         }
 
         // update product title

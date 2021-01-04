@@ -1,34 +1,33 @@
 type Query {
-    # products(query: String): [Post!]!,
-    # users(query: String): [User!]!,
-    allUsers: [User!]!,
-    allProducts: [Product!]!,
+    allUsers: [User!]!
+    allProducts: [Product!]!
     allReviews: [Review!]!
+    products(query: String): [Product!]!
 }
 
 # type Mutation {
 #     createUser(data: AddUserInput) : User!
-#     createProduct(data: AddPostInput) : Post!
+#     createProduct(data: AddPostInput) : Product!
 #     createReview(data: AddCommentInput) : Comment!
 
 #     deleteUser(id: ID!) : User!
-#     deleteProduct(id: ID!) : Post!
+#     deleteProduct(id: ID!) : Product!
 #     deleteReview(id: ID!) : Comment!
 
 #     updateUser(id: ID!, data: UpdateUserInput) : User!
-#     updateProduct(id: ID!, data: updateProductInput) : Post!
+#     updateProduct(id: ID!, data: updateProductInput) : Product!
 #     updateReview(id: ID!, data: updateReviewInput) : Comment!
 # }
 
 
 # type Subscription {
-#     review(postId: ID!): Comment!
-#     product: PostSubscriptionPayload!
+#     review(productId: ID!): Comment!
+#     product: ProductSubscriptionPayload!
 # }
 
-# type PostSubscriptionPayload {
+# type ProductSubscriptionPayload {
 #     mutation: String!
-#     data: Post!
+#     data: Product!
 # }
 
 # input AddUserInput {
