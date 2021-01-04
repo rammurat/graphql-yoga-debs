@@ -1,0 +1,92 @@
+type Query {
+    # products(query: String): [Post!]!,
+    # users(query: String): [User!]!,
+    allUsers: [User!]!,
+    allProducts: [Product!]!,
+    allReviews: [Review!]!
+}
+
+# type Mutation {
+#     createUser(data: AddUserInput) : User!
+#     createProduct(data: AddPostInput) : Post!
+#     createReview(data: AddCommentInput) : Comment!
+
+#     deleteUser(id: ID!) : User!
+#     deleteProduct(id: ID!) : Post!
+#     deleteReview(id: ID!) : Comment!
+
+#     updateUser(id: ID!, data: UpdateUserInput) : User!
+#     updateProduct(id: ID!, data: updateProductInput) : Post!
+#     updateReview(id: ID!, data: updateReviewInput) : Comment!
+# }
+
+
+# type Subscription {
+#     review(postId: ID!): Comment!
+#     product: PostSubscriptionPayload!
+# }
+
+# type PostSubscriptionPayload {
+#     mutation: String!
+#     data: Post!
+# }
+
+# input AddUserInput {
+#     name: String!, 
+#     email: String!, 
+#     age: Int!
+# }
+
+# input AddPostInput {
+#     title: String!, 
+#     body: String!, 
+#     published: Boolean!,
+#     author: ID!
+# }
+
+# input AddCommentInput {
+#     text: String!, 
+#     author: ID!, 
+#     product: ID!
+# }
+
+# input UpdateUserInput {
+#     name: String, 
+#     email: String, 
+#     age: Int
+# }
+
+# input updateProductInput {
+#     title: String, 
+#     body: String, 
+#     published: Boolean,
+#     author: ID
+# }
+
+# input updateReviewInput {
+#     text: String, 
+#     author: ID, 
+#     product: ID
+# }
+
+type Product {
+    id: ID!,
+    name: String!,
+    description: String!,
+    reviews: [Review!]!
+}
+
+type User {
+    id: ID!,
+    name: String!,
+    email: String!,
+    password: String!,
+    reviews: [Review!]!
+}
+
+type Review {
+    id: ID!,
+    text: String!,
+    author: User!,
+    product: Product!
+}

@@ -1,0 +1,208 @@
+// all users and products
+{
+  allProducts{
+    id,
+    title,
+    body,
+    published
+  },
+  allUsers{
+    id,
+    name,
+    email,
+    age
+  }
+}
+
+// search products and users
+{ 
+  users(query: "deep"){
+    name,
+    email
+  },
+  products(query: "product 1"){
+    title,
+    body
+  }
+}
+
+// relational products ans users 
+{
+  users{
+    name,
+    articles{
+      title
+    }
+  },
+  products{
+    title,
+    author{
+      name
+    }
+  }
+}
+
+// relational data between comments, users and products 
+{
+  allReviews{
+    text,
+    author{
+      name
+    }
+  },
+  users{
+    name,
+    comments{
+      text
+    }
+  }
+}
+
+// nested relational data
+{
+  products{
+    title,
+    author {
+      name,
+      comments{
+        text
+      }
+    },
+    comments{
+      text,
+      author{
+        name
+      }
+    }
+  }
+}
+
+// add users
+mutation {
+    createUser(data: {
+      name: "Kannu", 
+      email: "kannu@gmail.com", 
+      age: 27
+    }){
+    id,
+    name,
+    email,
+    age
+  }
+}
+
+// add products 
+mutation {
+    createProduct(data: {
+      title: "Post 101", 
+      body: "This is a new product", 
+      published: true,
+      author: "1"
+    }){
+    id,
+    title,
+    body,
+    published,
+    author {
+      name
+    }
+  }
+}
+
+// add comments 
+mutation {
+    createReview(data: {
+      text: "Comment 101", 
+      author: "1",
+      product: "11",
+    }){
+    id,
+    text,
+    author {
+      name
+    },
+    product{
+      title
+    }
+  }
+}
+
+// delete users
+mutation{
+  deleteUser(id: "2"){
+    name,
+    articles{
+      title
+    },
+    comments{
+      text
+    }
+  }
+}
+
+// delete products
+mutation{
+  deleteProduct(id: "14"){
+    title,
+    comments{
+      text
+    },
+    author{
+      name
+    }
+  }
+}
+
+// delete comments
+mutation{
+  deleteReview(id: "101"){
+    text,
+    id
+  }
+}
+
+// update user  
+mutation {
+    updateUser( id: "1", data: {
+      name: "Ram", 
+      age: 32
+    }){
+    id,
+    name,
+    email,
+    age
+  }
+}
+
+// update product 
+mutation {
+  updateProduct( id: "11", data: {
+      title: "Post updated 1", 
+      body: "Description updated"
+    }){
+    id,
+    title,
+    body
+  }
+}
+
+// update comments
+mutation {
+  updateReview( id: "101", data: {
+      text: "Comment updated 1"
+    }){
+    id,
+    text
+  }
+}
+
+
+// CRUD Operations Subscription 
+subscription{
+  product{
+    mutation
+    data{
+      title
+    }
+  }
+}
