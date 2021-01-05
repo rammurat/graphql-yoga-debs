@@ -1,23 +1,29 @@
 // all users, products, reviews and so on 
 query {
   allUsers {
+    id
     name
     email
-    reviews{
+    password
+    reviews {
       text
-    },
-    role{
+    }
+    role {
       name
     }
   }
   allProducts {
+    id
     name
     description
+    reviews {
+      text
+    }
   }
   allReviews {
     id
-    text,
-    author{
+    text
+    author {
       name
     }
   }
@@ -41,26 +47,25 @@ query {
 }
 
 
+
 // add users
 mutation {
-    createUser(data: {
-      name: "fg", 
-      email: "fg@gmail.com", 
-      password: "idea123",
-      role: "2"
-    }){
-    id,
-    name,
-    email,
-    password,
-    reviews{
+  createUser(
+    data: { name: "fg", email: "fg@gmail.com", password: "idea123", role: "2" }
+  ) {
+    id
+    name
+    email
+    password
+    reviews {
       text
-    },
-    role{
+    }
+    role {
       name
     }
   }
 }
+
 
 // add products 
 mutation {
@@ -76,7 +81,7 @@ mutation {
 
 // add reviews 
 mutation {
-  createReview(data: { text: "Comment 101", author: "2", product: "1" }) {
+  createReview(data: { text: "Review 101", author: "2", product: "1" }) {
     id
     text
     product {
@@ -119,38 +124,36 @@ mutation{
 
 // update user  
 mutation {
-    updateUser( id: "1", data: {
-      name: "Ram", 
-      age: 32
-    }){
-    id,
-    name,
-    email,
-    age
+  updateUser(id: "2", data: { name: "Rama", password: "100" }) {
+    id
+    name
+    email
+    password
   }
 }
+
 
 // update product 
 mutation {
-  updateProduct( id: "11", data: {
-      title: "Product updated 1", 
-      body: "Description updated"
-    }){
-    id,
-    title,
-    body
+  updateProduct(
+    id: "1"
+    data: { name: "Product updated 1", description: "Description updated" }
+  ) {
+    id
+    name
+    description
   }
 }
 
-// update comments
+
+// update reviews
 mutation {
-  updateReview( id: "101", data: {
-      text: "Comment updated 1"
-    }){
-    id,
+  updateReview(id: "1", data: { text: "Review updated 1111" }) {
+    id
     text
   }
 }
+
 
 
 // CRUD Operations Subscription 

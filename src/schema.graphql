@@ -17,9 +17,9 @@ type Mutation {
     deleteProduct(id: ID!) : Product!
     deleteReview(id: ID!) : Review!
 
-    # updateUser(id: ID!, data: UpdateUserInput) : User!
-    # updateProduct(id: ID!, data: updateProductInput) : Product!
-    # updateReview(id: ID!, data: updateReviewInput) : Review!
+    updateUser(id: ID!, data: UpdateUserInput) : User!
+    updateProduct(id: ID!, data: updateProductInput) : Product!
+    updateReview(id: ID!, data: updateReviewInput) : Review!
 }
 
 
@@ -51,24 +51,22 @@ input AddReviewInput {
     product: String!
 }
 
-# input UpdateUserInput {
-#     name: String, 
-#     email: String, 
-#     age: Int
-# }
+input UpdateUserInput {
+    name: String, 
+    email: String, 
+    password: String
+}
 
-# input updateProductInput {
-#     title: String, 
-#     body: String, 
-#     published: Boolean,
-#     author: ID
-# }
+input updateProductInput {
+    name: String, 
+    description: String
+}
 
-# input updateReviewInput {
-#     text: String, 
-#     author: ID, 
-#     product: ID
-# }
+input updateReviewInput {
+    text: String, 
+    author: String,
+    product: String
+}
 
 type Product {
     id: ID!,

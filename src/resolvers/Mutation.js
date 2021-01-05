@@ -106,82 +106,77 @@ const Mutation = {
         const newComments = db.allReviews.splice(index, 1) 
         return newComments[0]
     },
-    // updateUser(parent, args, {db}) {
-    //     const user = db.allUsers.find((user) => { return user.id === args.id})
+    updateUser(parent, args, {db}) {
+        const user = db.allUsers.find((user) => { return user.id === args.id})
 
-    //     if(!user) {
-    //         throw new Error('User does not exist')
-    //     }
+        if(!user) {
+            throw new Error('User does not exist')
+        }
 
-    //     // update user name
-    //     if(typeof args.data.name === 'string') {
-    //         user.name = args.data.name
-    //     }
+        // update user name
+        if(typeof args.data.name === 'string') {
+            user.name = args.data.name
+        }
 
-    //     // update user email
-    //     if(typeof args.data.email === 'string') {
-    //         const emailTaken = db.allUsers.some((user) => { return user.email === args.data.email})
+        // update user email
+        if(typeof args.data.email === 'string') {
+            const emailTaken = db.allUsers.some((user) => { return user.email === args.data.email})
             
-    //         if(emailTaken) {
-    //             throw new Error('Email taken')
-    //         }
+            if(emailTaken) {
+                throw new Error('Email taken')
+            }
 
-    //         user.email = args.data.email
-    //     }
+            user.email = args.data.email
+        }
 
-    //     // update user age
-    //     if(typeof args.data.age !== 'undefined') {
-    //         user.age = args.data.age
-    //     }
+        // update user password
+        if(typeof args.data.password !== 'undefined') {
+            user.password = args.data.password
+        }
 
-    //     return user;
-    // },
-    // updateProduct(parent, args, {db, pubsub}) {
-    //     const product = db.allProducts.find((product) => { return product.id === args.id})
+        return user;
+    },
+    updateProduct(parent, args, {db, pubsub}) {
+        const product = db.allProducts.find((product) => { return product.id === args.id})
 
-    //     if(!product) {
-    //         throw new Error('Product does not exist')
-    //     }
+        if(!product) {
+            throw new Error('Product does not exist')
+        }
 
-    //     // update product title
-    //     if(typeof args.data.title === 'string') {
-    //         product.title = args.data.title
-    //     }
+        // update product name
+        if(typeof args.data.name === 'string') {
+            product.name = args.data.name
+        }
 
-    //     // update product body
-    //     if(typeof args.data.body === 'string') {
-    //         product.body = args.data.body
-    //     }
+        // update product description
+        if(typeof args.data.description === 'string') {
+            product.description = args.data.description
+        }
 
-    //     // update product published state
-    //     if(typeof args.data.published === 'boolean') {
-    //         product.published = args.data.published
-    //     }
+        // trigger subscription 
+        pubsub.publish('product', {
+            product : {
+                mutation: 'UPDATED',
+                data: product
+            }
+        })
 
-    //     // trigger subscription 
-    //     pubsub.publish('product', {
-    //         product : {
-    //             mutation: 'UPDATED',
-    //             data: product
-    //         }
-    //     })
+        return product;
+    },
+    updateReview(parent, args, {db}) {
+        const review = db.allReviews.find((review) => { return review.id === args.id})
 
-    //     return product;
-    // },
-    // updateReview(parent, args, {db}) {
-    //     const review = db.allReviews.find((review) => { return review.id === args.id})
+        if(!review) {
+            throw new Error('Review does not exist')
+        }
 
-    //     if(!review) {
-    //         throw new Error('Comment does not exist')
-    //     }
+        // update review text
+        if(typeof args.data.text === 'string') {
+            review.text = args.data.text
+        }
 
-    //     // update review text
-    //     if(typeof args.data.text === 'string') {
-    //         review.text = args.data.text
-    //     }
-
-    //     return review;
-    // }
+        return review;
+    }
 }
 
 export default Mutation
