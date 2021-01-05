@@ -22,16 +22,15 @@ type Mutation {
     updateReview(id: ID!, data: updateReviewInput) : Review!
 }
 
+type Subscription {
+    review(productId: ID!): Review!
+    product: ProductSubscriptionPayload!
+}
 
-# type Subscription {
-#     review(productId: ID!): Review!
-#     product: ProductSubscriptionPayload!
-# }
-
-# type ProductSubscriptionPayload {
-#     mutation: String!
-#     data: Product!
-# }
+type ProductSubscriptionPayload {
+    mutation: String!
+    data: Product!
+}
 
 input AddUserInput {
     name: String!,

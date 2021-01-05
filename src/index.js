@@ -5,7 +5,7 @@ import Mutation from './resolvers/Mutation'
 import User from './resolvers/User'
 import Product from './resolvers/Product'
 import Review from './resolvers/Review'
-// import Subscription from './resolvers/Subscription'
+import Subscription from './resolvers/Subscription'
 
 const pubsub = new PubSub()
 
@@ -14,7 +14,7 @@ const server = new GraphQLServer({
     resolvers: {
         Query,
         Mutation,
-        // Subscription,
+        Subscription,
         User,
         Product,
         Review

@@ -154,14 +154,13 @@ mutation {
   }
 }
 
-
-
 // CRUD Operations Subscription 
 subscription{
   product{
     mutation
     data{
-      title
+      name,
+      description
     }
   }
 }
