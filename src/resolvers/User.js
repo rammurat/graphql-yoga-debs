@@ -5,8 +5,8 @@ const User = {
         })
     },
     role(parent, args, {db}) {
-        return db.allUserRoles.find((role) => {
-            return role.role === parent.id
+        return db.allUserRoles.find((roles) => {
+            return roles.id === parent.role
         })
     }
 }
