@@ -46,6 +46,21 @@ query {
   }
 }
 
+// relational data between comments, users and products 
+query {
+  allUsers {
+    name
+    reviews {
+      text
+    }
+  }
+  allReviews {
+    text
+    author {
+      name
+    }
+  }
+}
 
 
 // add users
@@ -161,58 +176,6 @@ subscription{
     data{
       name,
       description
-    }
-  }
-}
-
-
-// relational products and users 
-{
-  products{
-    name,
-    author{
-      name
-    }
-  },
-  users{
-    name,
-    articles{
-      title
-    }
-  }
-}
-
-// relational data between comments, users and products 
-{
-  allReviews{
-    text,
-    author{
-      name
-    }
-  },
-  users{
-    name,
-    comments{
-      text
-    }
-  }
-}
-
-// nested relational data
-{
-  products{
-    title,
-    author {
-      name,
-      comments{
-        text
-      }
-    },
-    comments{
-      text,
-      author{
-        name
-      }
     }
   }
 }
