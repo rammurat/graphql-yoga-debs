@@ -104,20 +104,17 @@ mutation{
 
 // delete products
 mutation{
-  deleteProduct(id: "14"){
-    title,
-    comments{
+  deleteProduct(id: "1"){
+    name,
+    reviews{
       text
-    },
-    author{
-      name
     }
   }
 }
 
 // delete comments
 mutation{
-  deleteReview(id: "101"){
+  deleteReview(id: "1"){
     text,
     id
   }

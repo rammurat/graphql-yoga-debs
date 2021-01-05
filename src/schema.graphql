@@ -14,17 +14,17 @@ type Mutation {
     createReview(data: AddReviewInput) : Review!
 
     # deleteUser(id: ID!) : User!
-    # deleteProduct(id: ID!) : Product!
-    # deleteReview(id: ID!) : Comment!
+    deleteProduct(id: ID!) : Product!
+    deleteReview(id: ID!) : Review!
 
     # updateUser(id: ID!, data: UpdateUserInput) : User!
     # updateProduct(id: ID!, data: updateProductInput) : Product!
-    # updateReview(id: ID!, data: updateReviewInput) : Comment!
+    # updateReview(id: ID!, data: updateReviewInput) : Review!
 }
 
 
 # type Subscription {
-#     review(productId: ID!): Comment!
+#     review(productId: ID!): Review!
 #     product: ProductSubscriptionPayload!
 # }
 

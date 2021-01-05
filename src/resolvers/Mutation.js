@@ -59,7 +59,7 @@ const Mutation = {
         pubsub.publish(`review ${args.data.product}`, {review})
 
         return review;
-    }
+    },
     // deleteUser(parent, args, {db}){
     //     // remove user
     //     const index = db.allUsers.findIndex((user) => user.id === args.id)
@@ -84,39 +84,39 @@ const Mutation = {
 
     //     return newUsers[0]
     // },
-    // deleteProduct(parent, args, {db, pubsub}){
-    //     // remove user
-    //     const index = db.allProducts.findIndex((product) => product.id === args.id)
-    //     if(index === -1){
-    //         throw new Error('Product not found')
-    //     }
+    deleteProduct(parent, args, {db, pubsub}){
+        // remove user
+        const index = db.allProducts.findIndex((product) => product.id === args.id)
+        if(index === -1){
+            throw new Error('Product not found')
+        }
 
-    //     // remove product
-    //     const [product] = db.allProducts.splice(index, 1)
+        // remove product
+        const [product] = db.allProducts.splice(index, 1)
 
-    //     // remove all comments related to the user
-    //     db.allReviews = db.allReviews.filter((review) => review.product !== args.id)
+        // remove all comments related to the user
+        db.allReviews = db.allReviews.filter((review) => review.product !== args.id)
 
-    //     pubsub.publish('product', {
-    //         product : {
-    //             mutation: 'DELETED',
-    //             data: product
-    //         }
-    //     })
+        pubsub.publish('product', {
+            product : {
+                mutation: 'DELETED',
+                data: product
+            }
+        })
 
-    //     return product
-    // },
-    // deleteReview(parent, args, {db}){
-    //     // remove user
-    //     const index = db.allReviews.findIndex((review) => review.id === args.id)
-    //     if(index === -1){
-    //         throw new Error('Comment not found')
-    //     }
+        return product
+    },
+    deleteReview(parent, args, {db}){
+        // remove user
+        const index = db.allReviews.findIndex((review) => review.id === args.id)
+        if(index === -1){
+            throw new Error('Review not found')
+        }
 
-    //     // remove product
-    //     const newComments = db.allReviews.splice(index, 1) 
-    //     return newComments[0]
-    // },
+        // remove product
+        const newComments = db.allReviews.splice(index, 1) 
+        return newComments[0]
+    },
     // updateUser(parent, args, {db}) {
     //     const user = db.allUsers.find((user) => { return user.id === args.id})
 
