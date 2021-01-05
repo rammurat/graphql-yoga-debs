@@ -8,19 +8,19 @@ type Query {
     allSubSubCategories: [SubSubCategories!]!
 }
 
-# type Mutation {
-#     createUser(data: AddUserInput) : User!
-#     createProduct(data: AddPostInput) : Product!
-#     createReview(data: AddCommentInput) : Comment!
+type Mutation {
+    createUser(data: AddUserInput) : User!
+    createProduct(data: AddProductInput) : Product!
+    createReview(data: AddReviewInput) : Review!
 
-#     deleteUser(id: ID!) : User!
-#     deleteProduct(id: ID!) : Product!
-#     deleteReview(id: ID!) : Comment!
+    # deleteUser(id: ID!) : User!
+    # deleteProduct(id: ID!) : Product!
+    # deleteReview(id: ID!) : Comment!
 
-#     updateUser(id: ID!, data: UpdateUserInput) : User!
-#     updateProduct(id: ID!, data: updateProductInput) : Product!
-#     updateReview(id: ID!, data: updateReviewInput) : Comment!
-# }
+    # updateUser(id: ID!, data: UpdateUserInput) : User!
+    # updateProduct(id: ID!, data: updateProductInput) : Product!
+    # updateReview(id: ID!, data: updateReviewInput) : Comment!
+}
 
 
 # type Subscription {
@@ -33,24 +33,23 @@ type Query {
 #     data: Product!
 # }
 
-# input AddUserInput {
-#     name: String!, 
-#     email: String!, 
-#     age: Int!
-# }
+input AddUserInput {
+    name: String!,
+    email: String!,
+    password: String!,
+    role: String!
+}
 
-# input AddPostInput {
-#     title: String!, 
-#     body: String!, 
-#     published: Boolean!,
-#     author: ID!
-# }
+input AddProductInput {
+    name: String!, 
+    description: String!,
+}
 
-# input AddCommentInput {
-#     text: String!, 
-#     author: ID!, 
-#     product: ID!
-# }
+input AddReviewInput {
+    text: String!
+    author: String!
+    product: String!
+}
 
 # input UpdateUserInput {
 #     name: String, 
@@ -78,12 +77,18 @@ type Product {
     reviews: [Review!]!
 }
 
+type UserRole {
+    id: ID!,
+    name: String!,
+}
+
 type User {
     id: ID!,
     name: String!,
     email: String!,
     password: String!,
-    reviews: [Review!]!
+    reviews: [Review!]!,
+    role: UserRole!,
 }
 
 type Review {

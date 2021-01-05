@@ -1,9 +1,9 @@
 const allUserRoles = [{
     id: "1",
-    role: 'admin'
+    name: 'admin'
 }, {
     id: "2",
-    role: 'user'
+    name: 'user'
 }]
 
 const allUsers = [{
@@ -11,19 +11,19 @@ const allUsers = [{
     name: 'admin',
     email: 'admin@gmail.com',
     password: "idea123",
-    role_id: "1"
+    role: "1"
 },{
     id: "2",
     name: 'ram',
     email: 'ram@gmail.com',
     password: "idea123",
-    role_id: "2"
+    role: "2"
 }, {
     id: "3",
     name: 'Deepak',
     email: 'deepak@gmail.com',
     password: "idea123",
-    role_id: "2"
+    role: "2"
 }]
 
 const allCategories = [{
@@ -124,11 +124,13 @@ const allProducts = [{
 const allReviews = [{
     id: "1",
     text: 'This is review 1',
-    user_id: "2"
+    author: "2",
+    product: "1"
 }, {
     id: "2",
     text: 'This is review 2',
-    user_id: "3"
+    author: "3",
+    product: "2"
 }]
 
 const db = {allUserRoles, allUsers, allCategories, allSubCategories, allSubSubCategories, allProducts, allReviews}

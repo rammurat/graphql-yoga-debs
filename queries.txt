@@ -14,14 +14,6 @@ query{
   }
 }
 
-// search products
-query { 
-  products(query: "lisca"){
-    name,
-    description
-  }
-}
-
 // all reviews 
 query{
   allReviews{
@@ -30,106 +22,75 @@ query{
   }
 }
 
-// relational products and users 
-{
-  products{
-    name,
-    author{
-      name
-    }
-  },
-  users{
-    name,
-    articles{
-      title
-    }
+// all categories / sub categories and so on 
+query{
+  allCategories {
+    id
+    name
+  }
+  allSubCategories {
+    id
+    name
+    image
+  }
+  allSubSubCategories {
+    id
+    name
   }
 }
 
-// relational data between comments, users and products 
-{
-  allReviews{
-    text,
-    author{
-      name
-    }
-  },
-  users{
-    name,
-    comments{
-      text
-    }
-  }
-}
-
-// nested relational data
-{
-  products{
-    title,
-    author {
-      name,
-      comments{
-        text
-      }
-    },
-    comments{
-      text,
-      author{
-        name
-      }
-    }
+// search products
+query {
+  products(query: "lisca") {
+    name
+    description
   }
 }
 
 // add users
 mutation {
     createUser(data: {
-      name: "Kannu", 
-      email: "kannu@gmail.com", 
-      age: 27
+      name: "aaa", 
+      email: "aaa@gmail.com", 
+      password: "idea123",
+      role: "2"
     }){
     id,
     name,
     email,
-    age
+    password,
+    role{
+      name
+    }
   }
 }
 
 // add products 
 mutation {
-    createProduct(data: {
-      title: "Product 101", 
-      body: "This is a new product", 
-      published: true,
-      author: "1"
-    }){
-    id,
-    title,
-    body,
-    published,
-    author {
+  createProduct(
+    data: { name: "Product 101", description: "This is a new product" }
+  ) {
+    id
+    name
+    description
+  }
+}
+
+
+// add reviews 
+mutation {
+  createReview(data: { text: "Comment 101", author: "2", product: "1" }) {
+    id
+    text
+    product {
+      name
+    },
+    author{
       name
     }
   }
 }
 
-// add comments 
-mutation {
-    createReview(data: {
-      text: "Comment 101", 
-      author: "1",
-      product: "11",
-    }){
-    id,
-    text,
-    author {
-      name
-    },
-    product{
-      title
-    }
-  }
-}
 
 // delete users
 mutation{
@@ -207,6 +168,58 @@ subscription{
     mutation
     data{
       title
+    }
+  }
+}
+
+
+// relational products and users 
+{
+  products{
+    name,
+    author{
+      name
+    }
+  },
+  users{
+    name,
+    articles{
+      title
+    }
+  }
+}
+
+// relational data between comments, users and products 
+{
+  allReviews{
+    text,
+    author{
+      name
+    }
+  },
+  users{
+    name,
+    comments{
+      text
+    }
+  }
+}
+
+// nested relational data
+{
+  products{
+    title,
+    author {
+      name,
+      comments{
+        text
+      }
+    },
+    comments{
+      text,
+      author{
+        name
+      }
     }
   }
 }
