@@ -91,12 +91,9 @@ mutation {
 
 // delete users
 mutation{
-  deleteUser(id: "2"){
+  deleteUser(id: "3"){
     name,
-    articles{
-      title
-    },
-    comments{
+    reviews{
       text
     }
   }
