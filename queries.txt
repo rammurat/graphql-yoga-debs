@@ -1,29 +1,30 @@
-// all users 
-query{
-  allUsers{
-    name,
+// all users, products, reviews and so on 
+query {
+  allUsers {
+    name
     email
+    reviews{
+      text
+    },
+    role{
+      name
+    }
   }
-}
-
-// all products
-query{
-  allProducts{
-    name,
+  allProducts {
+    name
     description
   }
-}
-
-// all reviews 
-query{
-  allReviews{
-    id,
-    text
+  allReviews {
+    id
+    text,
+    author{
+      name
+    }
   }
-}
-
-// all categories / sub categories and so on 
-query{
+  products(query: "lisca") {
+    name
+    description
+  }
   allCategories {
     id
     name
@@ -39,13 +40,6 @@ query{
   }
 }
 
-// search products
-query {
-  products(query: "lisca") {
-    name
-    description
-  }
-}
 
 // add users
 mutation {
