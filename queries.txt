@@ -112,7 +112,7 @@ mutation{
   }
 }
 
-// delete comments
+// delete reviews
 mutation{
   deleteReview(id: "1"){
     text,

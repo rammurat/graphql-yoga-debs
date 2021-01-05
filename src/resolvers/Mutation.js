@@ -60,30 +60,19 @@ const Mutation = {
 
         return review;
     },
-    // deleteUser(parent, args, {db}){
-    //     // remove user
-    //     const index = db.allUsers.findIndex((user) => user.id === args.id)
-    //     if(index === -1){
-    //         throw new Error('User not found')
-    //     }
-    //     const newUsers = db.allUsers.splice(index, 1)
+    deleteUser(parent, args, {db}){
+        // remove user
+        const index = db.allUsers.findIndex((user) => user.id === args.id)
+        if(index === -1){
+            throw new Error('User not found')
+        }
+        const newUsers = db.allUsers.splice(index, 1)
 
-    //     // remove all products related to the user
-    //     db.allProducts = db.allProducts.filter((product) => {
-    //         const match = (product.author === args.id)
 
-    //         if(match) {
-    //             // remove all comments related to the user
-    //             db.allReviews = db.allReviews.filter((review) => review.product !== product.id)
-    //         }
+        db.allReviews = db.allReviews.filter((review) => review.author !== args.id)
 
-    //         return !match
-    //     })
-
-    //     db.allReviews = db.allReviews.filter((review) => review.author !== args.id)
-
-    //     return newUsers[0]
-    // },
+        return newUsers[0]
+    },
     deleteProduct(parent, args, {db, pubsub}){
         // remove user
         const index = db.allProducts.findIndex((product) => product.id === args.id)
